@@ -2,6 +2,7 @@ class rvm::passenger::apache::centos::post(
   $ruby_version,
   $version,
   $rvm_prefix = '/usr/local/',
+  $compiled_module_fn = 'ext/apache2/mod_passenger.so',
   $mininstances = '1',
   $maxpoolsize = '6',
   $poolidletime = '300',
@@ -21,7 +22,7 @@ class rvm::passenger::apache::centos::post(
   file {
     '/etc/httpd/conf.d/passenger.conf':
       ensure  => file,
-      content => template('rvm/passenger-apache-centos.conf.erb'),
+      content => template('rvm/passenger-apache.load.erb', 'rvm/passenger-apache.conf.erb'),
       require => Exec['passenger-install-apache2-module'];
   }
 }
