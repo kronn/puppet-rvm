@@ -1,4 +1,5 @@
 class rvm::system($version=undef) {
+  include rvm::gpg
 
   $actual_version = $version ? {
     undef     => 'latest',
