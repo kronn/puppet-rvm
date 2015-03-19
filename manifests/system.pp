@@ -36,6 +36,7 @@ class rvm::system($version=undef) {
       exec { 'system-rvm-get':
         path    => '/usr/local/rvm/bin:/usr/bin:/usr/sbin:/bin',
         command => "rvm get ${version}",
+        require => Exec['system-rvm-gpg-key'],
         before  => Exec['system-rvm'], # so it doesn't run after being installed the first time
       }
     }
