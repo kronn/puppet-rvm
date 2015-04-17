@@ -11,6 +11,24 @@ class rvm::passenger::apache::ubuntu::post(
   $gempath,
   $binpath
 ) {
+  $apache_build_pkgs = $::operatingsystemrelease ? {
+    '12.04' => [
+      'apache2',
+      'build-essential',
+      'apache2-prefork-dev',
+      'libapr-dev',
+      'libaprutil-dev',
+      'libcurl4-openssl-dev',
+    ],
+    '14.04' => [
+      'apache2',
+      'build-essential',
+      'apache2-dev',
+      'libapr1-dev',
+      'libaprutil1-dev',
+      'libcurl4-openssl-dev',
+    ],
+  }
 
   exec {
     'passenger-install-apache2-module':
@@ -18,8 +36,7 @@ class rvm::passenger::apache::ubuntu::post(
       command   => "${binpath}rvm ${ruby_version} exec passenger-install-apache2-module -a",
       creates   => "${gempath}/passenger-${version}/${compiled_module_fn}",
       logoutput => 'on_failure',
-      require   => [Rvm_gem['passenger'], Package['apache2', 'build-essential', 'apache2-prefork-dev',
-                                                  'libapr-dev', 'libaprutil-dev', 'libcurl4-openssl-dev']],
+      require   => [Rvm_gem['passenger'], Package[$apache_build_pkgs]],
   }
 
   file {
