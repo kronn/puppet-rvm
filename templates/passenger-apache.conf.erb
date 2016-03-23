@@ -12,4 +12,7 @@
   PassengerMinInstances <%= @mininstances %>
   PassengerSpawnMethod <%= @spawnmethod %>
 <% end %>
+<% if @version >= "4.0.42" %>
+  PassengerFriendlyErrorPages off
+<% end %>
 </IfModule>
