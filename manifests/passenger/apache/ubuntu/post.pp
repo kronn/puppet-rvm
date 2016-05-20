@@ -28,6 +28,14 @@ class rvm::passenger::apache::ubuntu::post(
       'libaprutil1-dev',
       'libcurl4-openssl-dev',
     ],
+    '16.04' => [
+      'apache2',
+      'build-essential',
+      'apache2-dev',
+      'libapr1-dev',
+      'libaprutil1-dev',
+      'libcurl4-openssl-dev',
+    ],
   }
 
   exec {
