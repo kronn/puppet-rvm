@@ -11,7 +11,7 @@ class rvm::passenger::apache::ubuntu::pre {
       if ! defined(Package['libapr1-dev'])          { package { 'libapr1-dev':          ensure => present, alias => 'libapr-dev' } }
       if ! defined(Package['libaprutil1-dev'])      { package { 'libaprutil1-dev':      ensure => present, alias => 'libaprutil-dev' } }
     }
-    '14.04': {
+    '14.04', '16.04': {
       if ! defined(Package['apache2-dev'])     { package { 'apache2-dev':     ensure => present } }
       if ! defined(Package['libapr1-dev'])     { package { 'libapr1-dev':     ensure => present } }
       if ! defined(Package['libaprutil1-dev']) { package { 'libaprutil1-dev': ensure => present } }
