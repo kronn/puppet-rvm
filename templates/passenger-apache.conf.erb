@@ -15,4 +15,7 @@
 <% if @version >= "4.0.42" %>
   PassengerFriendlyErrorPages off
 <% end %>
+<% if @version >= "5.0.0" && @disable_version_in_header %>
+  PassengerShowVersionInHeader off
+<% end %>
 </IfModule>
