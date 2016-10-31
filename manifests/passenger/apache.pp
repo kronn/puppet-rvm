@@ -6,7 +6,8 @@ class rvm::passenger::apache(
   $maxpoolsize = '6',
   $poolidletime = '300',
   $maxinstancesperapp = '0',
-  $spawnmethod = 'smart-lv2'
+  $spawnmethod = 'smart-lv2',
+  $disable_version_in_header = false,
 ) {
 
   case $::operatingsystem {
